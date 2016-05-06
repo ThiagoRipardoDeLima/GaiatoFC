@@ -2,23 +2,23 @@
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
-    <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/gaiatosfc</property>
-    <property name="hibernate.connection.username">postgres</property>
-    <property name="hibernate.connection.password">1</property>
-    <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/gaiatosfc?createDatabaseIfNotExist=true</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">root</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.format_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
-    <mapping class="br.com.gaiatosfc.model.JogadoresAdv"/>
-    <mapping class="br.com.gaiatosfc.model.Noticias"/>
-    <mapping class="br.com.gaiatosfc.model.Campeonatos"/>
-    <mapping class="br.com.gaiatosfc.model.Gols"/>
-    <mapping class="br.com.gaiatosfc.model.Jogadores"/>
     <mapping class="br.com.gaiatosfc.model.Adversarios"/>
-    <mapping class="br.com.gaiatosfc.model.GolsAdv"/>
+    <mapping class="br.com.gaiatosfc.model.Campeonatos"/>
     <mapping class="br.com.gaiatosfc.model.Fale"/>
+    <mapping class="br.com.gaiatosfc.model.Gols"/>
+    <mapping class="br.com.gaiatosfc.model.GolsAdv"/>
+    <mapping class="br.com.gaiatosfc.model.Jogadores"/>
+    <mapping class="br.com.gaiatosfc.model.JogadoresAdv"/>
     <mapping class="br.com.gaiatosfc.model.Jogos"/>
+    <mapping class="br.com.gaiatosfc.model.Noticias"/>
   </session-factory>
 </hibernate-configuration>

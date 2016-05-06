@@ -61,8 +61,8 @@ public class Campeonatos  implements java.io.Serializable {
         this.nomeCamp = nomeCamp;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="campeonatos")
-    public Set getJogoses() {
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="campeonatos")
+    public Set<Jogos> getJogoses() {
         return this.jogoses;
     }
     

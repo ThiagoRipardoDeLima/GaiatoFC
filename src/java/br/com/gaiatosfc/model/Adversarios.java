@@ -18,7 +18,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="adversarios"
-    ,schema="public"
+    ,catalog="gaiatosfc"
 )
 public class Adversarios  implements java.io.Serializable {
 
@@ -44,9 +44,7 @@ public class Adversarios  implements java.io.Serializable {
        this.jogoses = jogoses;
     }
    
-     @Id 
-
-    
+    @Id 
     @Column(name="cod_adv", unique=true, nullable=false)
     public int getCodAdv() {
         return this.codAdv;
@@ -56,7 +54,7 @@ public class Adversarios  implements java.io.Serializable {
         this.codAdv = codAdv;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="cod_jogadores_adv")
     public JogadoresAdv getJogadoresAdv() {
         return this.jogadoresAdv;
@@ -86,8 +84,8 @@ public class Adversarios  implements java.io.Serializable {
         this.escudoAdv = escudoAdv;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="adversarios")
-    public Set getJogoses() {
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="adversarios")
+    public Set<Jogos> getJogoses() {
         return this.jogoses;
     }
     

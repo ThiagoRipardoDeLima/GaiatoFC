@@ -72,7 +72,7 @@ public class Jogos  implements java.io.Serializable {
         this.codJg = codJg;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="cod_adversario")
     public Adversarios getAdversarios() {
         return this.adversarios;
@@ -82,7 +82,7 @@ public class Jogos  implements java.io.Serializable {
         this.adversarios = adversarios;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="cod_campeonato")
     public Campeonatos getCampeonatos() {
         return this.campeonatos;
@@ -152,8 +152,8 @@ public class Jogos  implements java.io.Serializable {
         this.codComentario = codComentario;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="jogos")
-    public Set getGolsAdvs() {
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="jogos")
+    public Set<GolsAdv> getGolsAdvs() {
         return this.golsAdvs;
     }
     
@@ -162,7 +162,7 @@ public class Jogos  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="jogos")
-    public Set getGolses() {
+    public Set<Gols> getGolses() {
         return this.golses;
     }
     

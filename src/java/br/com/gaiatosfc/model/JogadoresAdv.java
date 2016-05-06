@@ -86,8 +86,8 @@ public class JogadoresAdv  implements java.io.Serializable {
         this.codTime = codTime;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="jogadoresAdv")
-    public Set getGolsAdvs() {
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="jogadoresAdv")
+    public Set<GolsAdv> getGolsAdvs() {
         return this.golsAdvs;
     }
     
@@ -95,8 +95,8 @@ public class JogadoresAdv  implements java.io.Serializable {
         this.golsAdvs = golsAdvs;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="jogadoresAdv")
-    public Set getAdversarioses() {
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="jogadoresAdv")
+    public Set<Adversarios> getAdversarioses() {
         return this.adversarioses;
     }
     
