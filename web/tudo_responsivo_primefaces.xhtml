@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="windows-1251"?>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"  
     xmlns:h="http://java.sun.com/jsf/html"    
     xmlns:p="http://primefaces.org/ui"
@@ -10,7 +11,7 @@
     <h:body>
   
  
- <!--
+
         <p:panel id="basic" header="Basic" footer="Movie Details" style="margin-bottom:20px">
             <h:panelGrid columns="2" cellpadding="20">
                 <p:graphicImage name="demo/images/godfather/godfather1.jpg" />
@@ -18,13 +19,15 @@
                     value="The story begins as Don Vito Corleone..." />
             </h:panelGrid>
         </p:panel>
-        
-        
-    
--->
+  
+
+<!--
         <h:panelGroup class="ui-fluid">
  
             <p:panel header="Cadastrar Jogadores" footer="" style="margin-top:10px; height: 600px" styleClass="">
+                
+                <p:inputText></p:inputText>
+                
                 <h:form id="form-cadastro-jogador">
                     
                     <p:growl id="msg-cadastro-jogador" life="1000" />
@@ -60,85 +63,15 @@
                          
                    
                 </p:layout>
-                    
-                    
-                    
-                    <!--
-                    <h:panelGroup class="ui-grid ui-grid-responsive">
-                        <h:panelGroup class="ui-grid-row">
-                            <h:panelGroup class="ui-grid-col-2" style="text-align: center">
-                                <h:outputLabel id="lblJogador" value="Jogador" style="display: block; padding-top: 10px"/>
-                                <h:outputLabel id="lblPosicao" value="Posicao" style="display: block; padding-top: 30px"/>
-                                <h:outputLabel id="lblnascimento" value="Data de Nasc." style="display: block; padding-top: 30px"/>
-                                <h:outputLabel id="lblminMax" value="Camisa " style="display: block; padding-top: 30px" />
-                            </h:panelGroup>
-                            
-                            <h:panelGroup class="ui-grid-col-10" style="text-align: center">
-                                <p:inputText id="txtNomeJogador" style="margin-top: 5px"/>
-                                <p:inputText id="txtPosicao" style="margin-top: 20px"/>
-                                <p:calendar id="txtData" value="#{calendarView.date9}" pattern="dd-MM-yyyy" mask="true" style="display: block; padding-top: 20px" />
-                                <p:spinner id="txtNumeroCamisa" value="#{spinnerView.number3}" min="1" max="20" style="margin-top: 20px"/>
-                            </h:panelGroup>
-                        </h:panelGroup>
-                    </h:panelGroup>
-                    -->
+
                      <p:commandButton value="CADASTRAR"
                                  actionListener="#{JogadoresBean.cadastrarNovoJogador}"
                                  update="form-cadastro-jogador"
                                  styleClass="ui-priority-primary"/>
-                                 
-                                 
-            
-            
+
              </h:form>
         </p:panel>                    
     </h:panelGroup>  
-
-                    
-                    <!--
-                        <div class="ui-grid ui-grid-responsive">
-                            <div class="ui-grid-row">
-                                <div class="ui-grid-col-2" style="text-align: center;">
-                                    <p:outputLabel for="input" value="Jogador" style="display: block; padding-top: 10px"/>
-                                    <p:outputLabel for="input" value="Posicao" style="display: block; padding-top: 30px"/>
-                                    <p:outputLabel for="mask" value="Data de Nasc." style="display: block; padding-top: 30px"/>
-                                    <h:outputLabel for="minMax" value="Camisa " style="display: block; padding-top: 30px" />
-                                    
-                                </div>
-
-                                <div class="ui-grid-col-10">
-                                    <p:inputText id="input" style="margin-top: 5px"/>
-                                    <p:inputText id="input1" style="margin-top: 20px"/>
-                                    <p:calendar id="mask" value="#{calendarView.date9}" pattern="dd-MM-yyyy" mask="true" style="display: block; padding-top: 20px" />
-                                    <p:spinner id="minMax" value="#{spinnerView.number3}" min="1" max="20" style="margin-top: 20px"/>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    -->
-                        
-                   
-                <!--
-                <p:layout style="min-width:400px;min-height:250px; display: block">
-                    
-                        
-                    <p:layoutUnit position="west" resizable="false" size="300" minSize="40" maxSize="200">
-
-                    </p:layoutUnit>
-
-                    <p:layoutUnit position="center">
-                        
-                        
-                    </p:layoutUnit>
-                         
-                   
-                </p:layout>
-                
-               
-                
 -->
-            
-        
-        
     </h:body>
 </html>

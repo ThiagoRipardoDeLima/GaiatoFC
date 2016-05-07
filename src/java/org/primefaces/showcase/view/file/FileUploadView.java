@@ -6,13 +6,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import org.apache.commons.io.FilenameUtils;
  
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
  
 @ManagedBean
+@RequestScoped
 public class FileUploadView {
  
     public void handleFileUpload(FileUploadEvent e) throws IOException{
@@ -20,7 +21,7 @@ public class FileUploadView {
 		
 		String filePath="C:/fotos/";
                 byte[] bytes=null;
-
+/*
             if (null!=uploadedPhoto) {
                 bytes = uploadedPhoto.getContents();
                 String filename = FilenameUtils.getName(uploadedPhoto.getFileName());
@@ -28,9 +29,10 @@ public class FileUploadView {
                 stream.write(bytes);
                 stream.close();
             }
-           
+           */
 		
-        FacesContext.getCurrentInstance().addMessage("messages",new FacesMessage(FacesMessage.SEVERITY_INFO,""+ uploadedPhoto.getFileName()+ " de "+ uploadedPhoto.getSize()+ "bites foi upado com sucesso", ""));
+        FacesContext.getCurrentInstance().
+                addMessage("messages",new FacesMessage(FacesMessage.SEVERITY_INFO,""+ uploadedPhoto.getFileName()+ " de "+ uploadedPhoto.getSize()+ "bites foi upado com sucesso", ""));
     }
         
 }

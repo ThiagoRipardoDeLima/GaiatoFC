@@ -8,7 +8,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import org.apache.commons.io.FilenameUtils;
+
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
@@ -58,14 +58,14 @@ public class FileUploadBean implements Serializable{
 		//System.out.println("Size " + uploadedPhoto.getSize());
 		String filePath="C:/";
         byte[] bytes=null;
-
+            /*
             if (null!=uploadedPhoto) {
                 bytes = uploadedPhoto.getContents();
-                String filename = FilenameUtils.getName(uploadedPhoto.getFileName());
+               String filename = FilenameUtils.getName(uploadedPhoto.getFileName());
                 BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filePath+filename)));
                 stream.write(bytes);
                 stream.close();
-            }
+            }*/
            
         return "successo";
 	}
@@ -84,7 +84,7 @@ public class FileUploadBean implements Serializable{
 		
 		String filePath="C:/";
         byte[] bytes=null;
-
+/*
             if (null!=uploadedPhoto) {
                 bytes = uploadedPhoto.getContents();
                 String filename = FilenameUtils.getName(uploadedPhoto.getFileName());
@@ -92,7 +92,7 @@ public class FileUploadBean implements Serializable{
                 stream.write(bytes);
                 stream.close();
             }
-           
+           */
 		
         FacesContext.getCurrentInstance().addMessage("messages",new FacesMessage(FacesMessage.SEVERITY_INFO,""+ uploadedPhoto.getFileName()+ " de "+ uploadedPhoto.getSize()+ "bites foi upado com sucesso", ""));
 	}
