@@ -5,7 +5,7 @@
  */
 package br.com.gaiatosfc.beans;
 
-import br.com.gaiatosfc.DAO.CampeonatosDAO;
+import br.com.gaiatosfc.DAO.CampeonatosDAOImp;
 import br.com.gaiatosfc.model.Campeonatos;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -24,17 +24,14 @@ public class CampeonatosBean {
     }
     
     public void cadastrarNovoCampeonato() {
-        
-    
         FacesMessage fm = new FacesMessage();
-        
         try {
             
             if (campeonato==null) {
                 throw new Exception("O objeto nao foi criado");
             }
             
-            CampeonatosDAO campeonatoDao = new CampeonatosDAO();
+            CampeonatosDAOImp campeonatoDao = new CampeonatosDAOImp();
             campeonatoDao.salvar(campeonato);
             System.out.println("Cadastro Efetuado!!");
             

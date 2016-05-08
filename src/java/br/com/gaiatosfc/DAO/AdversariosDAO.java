@@ -5,6 +5,7 @@
  */
 package br.com.gaiatosfc.DAO;
 
+import br.com.gaiatosfc.commons.DAOException;
 import br.com.gaiatosfc.model.Adversarios;
 import br.com.gaiatosfc.model.Jogadores;
 import java.util.List;

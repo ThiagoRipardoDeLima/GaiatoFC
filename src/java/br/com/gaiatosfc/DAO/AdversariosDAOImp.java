@@ -6,9 +6,10 @@
 package br.com.gaiatosfc.DAO;
 
 import br.com.gaiatosfc.commons.DAOException;
-import br.com.gaiatosfc.model.Jogadores;
+import br.com.gaiatosfc.model.Adversarios;
 import br.com.gaiatosfc.util.HibernateUtil;
 import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -16,12 +17,11 @@ import org.hibernate.Transaction;
  *
  * @author FERNANDO
  */
-public class JogadoresDAOImp implements JogadoresDAO{
-    
-    
+public class AdversariosDAOImp implements AdversariosDAO {
+
     @Override
-    public void salvar(Jogadores jogador) throws DAOException {
-        Session session = null;
+    public void salvar(Adversarios jogador) throws DAOException {
+       Session session = null;
         try{
             session = HibernateUtil.getSessionFactory().openSession();
             Transaction t = session.beginTransaction();
@@ -38,8 +38,8 @@ public class JogadoresDAOImp implements JogadoresDAO{
     }
 
     @Override
-    public void atualizar(Jogadores jogador) throws DAOException {
-         Session session = null;
+    public void atualizar(Adversarios jogador) throws DAOException {
+       Session session = null;
         try{
             session = HibernateUtil.getSessionFactory().openSession();
             Transaction t = session.beginTransaction();
@@ -56,7 +56,7 @@ public class JogadoresDAOImp implements JogadoresDAO{
     }
 
     @Override
-    public void deletar(Jogadores jogador) throws DAOException {
+    public void deletar(Adversarios jogador) throws DAOException {
         Session session = null;
         try{
             session = HibernateUtil.getSessionFactory().openSession();
@@ -74,27 +74,28 @@ public class JogadoresDAOImp implements JogadoresDAO{
     }
 
     @Override
-    public List<Jogadores> findAllJogadorID(Integer id) throws DAOException {
+    public List<Adversarios> findAllJogadorID(Integer id) throws DAOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Jogadores> findAllJogadores() throws DAOException {
+    public List<Adversarios> findAllJogadores() throws DAOException {
         Session session = null;
         try{
             session = HibernateUtil.getSessionFactory().openSession();
             Transaction t = session.beginTransaction();
-            List allJogadores = session
-                    .createQuery("from Jogadores J order by J.nome asc")
+            List allAdversarios = session
+                    .createQuery("from Adversarios A order by A.nome asc")
                     .list();
             t.commit();
-            return allJogadores;
+            return allAdversarios;
         }catch(Exception e){
-            throw new DAOException("Nenhum Jogador Cadastrado: " + e);
+            throw new DAOException("Nenhum Jogador localizado: " + e);
         }finally{
             if(session!=null){
                 session.close();
             }
         }
     }
+    
 }

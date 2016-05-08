@@ -6,6 +6,7 @@
 package br.com.gaiatosfc.DAO;
 
 import br.com.gaiatosfc.commons.DAOException;
+import br.com.gaiatosfc.model.Campeonatos;
 import br.com.gaiatosfc.model.Jogadores;
 import br.com.gaiatosfc.util.HibernateUtil;
 import java.util.List;
@@ -16,16 +17,16 @@ import org.hibernate.Transaction;
  *
  * @author FERNANDO
  */
-public class JogadoresDAOImp implements JogadoresDAO{
+public class CampeonatosDAOImp implements CampeonatosDAO{
     
     
     @Override
-    public void salvar(Jogadores jogador) throws DAOException {
+    public void salvar(Campeonatos campeonato) throws DAOException {
         Session session = null;
         try{
             session = HibernateUtil.getSessionFactory().openSession();
             Transaction t = session.beginTransaction();
-            session.save(jogador);
+            session.save(campeonato);
             t.commit();
         }catch(Exception e){
             session.getTransaction().rollback();
@@ -38,12 +39,12 @@ public class JogadoresDAOImp implements JogadoresDAO{
     }
 
     @Override
-    public void atualizar(Jogadores jogador) throws DAOException {
+    public void atualizar(Campeonatos campeonato) throws DAOException {
          Session session = null;
         try{
             session = HibernateUtil.getSessionFactory().openSession();
             Transaction t = session.beginTransaction();
-            session.update(jogador);
+            session.update(campeonato);
             t.commit();
         }catch(Exception e){
             session.getTransaction().rollback();
@@ -56,12 +57,12 @@ public class JogadoresDAOImp implements JogadoresDAO{
     }
 
     @Override
-    public void deletar(Jogadores jogador) throws DAOException {
+    public void deletar(Campeonatos campeonato) throws DAOException {
         Session session = null;
         try{
             session = HibernateUtil.getSessionFactory().openSession();
             Transaction t = session.beginTransaction();
-            session.delete(jogador);
+            session.delete(campeonato);
             t.commit();
         }catch(Exception e){
             session.getTransaction().rollback();
@@ -74,27 +75,29 @@ public class JogadoresDAOImp implements JogadoresDAO{
     }
 
     @Override
-    public List<Jogadores> findAllJogadorID(Integer id) throws DAOException {
+    public List<Jogadores> findAllCampeonatosID(Integer id) throws DAOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    @Override
-    public List<Jogadores> findAllJogadores() throws DAOException {
+    
+     @Override
+    public List<Jogadores> findAllCampeonatos() throws DAOException {
         Session session = null;
         try{
             session = HibernateUtil.getSessionFactory().openSession();
             Transaction t = session.beginTransaction();
-            List allJogadores = session
-                    .createQuery("from Jogadores J order by J.nome asc")
+            List allCampeonatos = session
+                    .createQuery("from campeonatos C order by C.nome_camp asc")
                     .list();
             t.commit();
-            return allJogadores;
+            return allCampeonatos;
         }catch(Exception e){
-            throw new DAOException("Nenhum Jogador Cadastrado: " + e);
+            throw new DAOException("Nenhum Campeonato Cadastrao " + e);
         }finally{
-            if(session!=null){
+            if(session != null){
                 session.close();
             }
         }
     }
+
+
 }

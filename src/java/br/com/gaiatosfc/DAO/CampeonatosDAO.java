@@ -5,22 +5,21 @@
  */
 package br.com.gaiatosfc.DAO;
 
+import br.com.gaiatosfc.commons.DAOException;
 import br.com.gaiatosfc.model.Campeonatos;
-import br.com.gaiatosfc.util.HibernateUtil;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import br.com.gaiatosfc.model.Jogadores;
+import java.util.List;
 
 /**
  *
  * @author FERNANDO
  */
-public class CampeonatosDAO{
+public interface CampeonatosDAO{
     
-    
-    public void salvar(Campeonatos campeonato) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction t = session.beginTransaction();
-        session.save(campeonato);
-        t.commit();        
-    }
+   void salvar(Campeonatos campeonato) throws DAOException;
+   void atualizar(Campeonatos campeonato) throws DAOException;
+   void deletar(Campeonatos campeonato) throws DAOException;
+   List<Jogadores> findAllCampeonatosID(Integer id) throws DAOException;
+   List<Jogadores> findAllCampeonatos() throws DAOException;
+   
 }
