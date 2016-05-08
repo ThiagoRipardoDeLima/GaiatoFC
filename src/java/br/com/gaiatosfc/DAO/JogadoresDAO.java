@@ -16,7 +16,7 @@ import org.hibernate.Transaction;
  *
  * @author FERNANDO
  */
-public class JogadoresDAO implements gaiatosDAO{
+public class JogadoresDAO{
     
     
     public void salvar(Jogadores jogador) {
@@ -25,31 +25,4 @@ public class JogadoresDAO implements gaiatosDAO{
         session.save(jogador);
         t.commit();        
     }
-
-    @Override
-    public void salvar(Object objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void atualizar(Object objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void deletar(Object objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object getObjetoId(Serializable id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List getObjetos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-
 }

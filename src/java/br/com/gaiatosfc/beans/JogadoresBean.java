@@ -8,12 +8,13 @@ package br.com.gaiatosfc.beans;
 import br.com.gaiatosfc.DAO.JogadoresDAO;
 import br.com.gaiatosfc.model.Jogadores;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author FERNANDO
- */
+@ManagedBean(name = "jogadorBean")
+@RequestScoped
 public class JogadoresBean {
     
     private Jogadores jogador;
@@ -35,6 +36,8 @@ public class JogadoresBean {
             
             JogadoresDAO jogadorDao = new JogadoresDAO();
             jogadorDao.salvar(jogador);
+            System.out.println("Cadastro Efetuado!!");
+            
             /*
             this.getListaAlunos();
             novoAluno=new Aluno();
@@ -46,12 +49,21 @@ public class JogadoresBean {
             
             
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Nao Cadastrou!!");
             fm = new FacesMessage(
                 FacesMessage.SEVERITY_WARN,e.getMessage(),null);            
         }
         
         FacesContext.getCurrentInstance().addMessage(null, fm);
         
+    }
+    
+    public Jogadores getJogador(){
+        return jogador;
+    }
+    
+    public void setJogador(Jogadores jogador){
+        this.jogador = jogador;
     }
     
 }
