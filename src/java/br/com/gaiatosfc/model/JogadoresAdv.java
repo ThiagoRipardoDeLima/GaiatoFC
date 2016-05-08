@@ -16,7 +16,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="jogadores_adv"
-    ,schema="public"
+    ,catalog="gaiatosfc"
 )
 public class JogadoresAdv  implements java.io.Serializable {
 

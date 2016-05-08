@@ -12,7 +12,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="noticias"
-    ,schema="public"
+    ,catalog="gaiatosfc"
 )
 public class Noticias  implements java.io.Serializable {
 

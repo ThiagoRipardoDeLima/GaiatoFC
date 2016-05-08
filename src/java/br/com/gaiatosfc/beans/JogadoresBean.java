@@ -11,7 +11,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.swing.JOptionPane;
 
 @ManagedBean(name = "jogadorBean")
 @RequestScoped
@@ -31,25 +30,19 @@ public class JogadoresBean {
         try {
             
             if (jogador==null) {
-                throw new Exception("O objeto n?o foi criado");
+                throw new Exception("O objeto não foi criado");
             }
             
             JogadoresDAO jogadorDao = new JogadoresDAO();
             jogadorDao.salvar(jogador);
-            System.out.println("Cadastro Efetuado!!");
             
-            /*
-            this.getListaAlunos();
-            novoAluno=new Aluno();
-            */
-            String successMsg="Novo usu?rio cadastrado com sucesso!";
-            
+            String successMsg="Jogador Cadastrado";
             fm = new FacesMessage(
                 FacesMessage.SEVERITY_INFO,successMsg,null);
             
             
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Nao Cadastrou!!");
+            
             fm = new FacesMessage(
                 FacesMessage.SEVERITY_WARN,e.getMessage(),null);            
         }

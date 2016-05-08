@@ -21,7 +21,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="jogos"
-    ,schema="public"
+    ,catalog="gaiatosfc"
 )
 public class Jogos  implements java.io.Serializable {
 

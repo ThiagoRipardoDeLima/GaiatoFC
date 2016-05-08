@@ -16,7 +16,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="campeonatos"
-    ,schema="public"
+    ,catalog="gaiatosfc"
 )
 public class Campeonatos  implements java.io.Serializable {
 
@@ -39,9 +39,7 @@ public class Campeonatos  implements java.io.Serializable {
        this.jogoses = jogoses;
     }
    
-     @Id 
-
-    
+    @Id 
     @Column(name="cod_c", unique=true, nullable=false)
     public int getCodC() {
         return this.codC;

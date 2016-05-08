@@ -33,6 +33,7 @@ public class Jogadores  implements java.io.Serializable {
      private String posicao;
      private Integer jogosDisputados;
      private Integer gols;
+     private Integer numeroCamisa;
      private Date dataNasc;
      private Set golses = new HashSet(0);
 
@@ -136,9 +137,14 @@ public class Jogadores  implements java.io.Serializable {
         this.golses = golses;
     }
 
-
-
-
+    @Column(name="numero_camisa")
+    public Integer getNumeroCamisa(){
+        return numeroCamisa;
+    }
+    
+    public void setNumeroCamisa(Integer numeroCamisa){
+        this.numeroCamisa = numeroCamisa;
+    }
 }
 
 

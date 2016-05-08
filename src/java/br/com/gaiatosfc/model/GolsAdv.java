@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="gols_adv"
-    ,schema="public"
+    ,catalog="gaiatosfc"
 )
 public class GolsAdv  implements java.io.Serializable {
 

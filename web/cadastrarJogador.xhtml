@@ -22,13 +22,14 @@
                 <f:validateRegex pattern="^\d+$" />
                 <f:validateLength minimum="1" maximum="2"/>
             </p:inputText>   
-            <p:outputLabel id="lblJogador" value="Nome" style="display: block; padding-top: 10px"/>
-             <p:inputText id="txtNomeJogador" value="#{JogadoresBean.jogador.nomeJd}" style="margin-top: 5px"/>
+            
          -->
         <p:fieldset legend="Cadastrar Novo Jogador" toggleable="False">
-        <h:form id="form-cadastro-jogador">
+         
+            <h:form id="form-cadastro-jogador">
+                
             
-            <p:messages id="msg-cadastro-jogador"/>
+                <p:messages id="msg-cadastro-jogador"/>
             <!--
             <p:outputLabel id="lblnascimento" value="Data de Nasc." style="display: block; padding-top: 30px"/>
             <p:outputLabel id="lblminMax" value="Camisa " style="display: block; padding-top: 30px" />             
@@ -42,19 +43,34 @@
             </p:inputText>  
             -->
             
-            <p:outputLabel id="lblJogador" value="Nome" style="display: block; padding-top: 10px"/>
-            <p:inputText id="txtNomeJogador" value="#{jogadorBean.jogador.nomeJd}" 
-                                                     style="margin-top: 5px"/>
-           
-             
+                <p:outputLabel id="lblJogador">Nome Jogador</p:outputLabel>
+                <p:inputText id="txtNomeJogador" 
+                             value="#{jogadorBean.jogador.nomeJd}"
+                             required="True"
+                             requiredMessage="Por Favor, informe o Nome do Jogador"
+                             maxlength="40"
+                             validatorMessage="O Nome deve conter no maximo 40 caracteres">
+                            <f:validateLength maximum="40"></f:validateLength>
+                </p:inputText>
+                
+                
+                <p:outputLabel id="lblNumeroCamisa">Numero da Camisa</p:outputLabel> 
+                <p:inputText id="txtNumeroCamisa" 
+                             required="true"
+                             validatorMessage="Numero da Camisa entre 1 e 20">
+                    <f:validateRegex pattern="^\d+$" />
+                    <f:validateLength minimum="1" maximum="20"/>
+                    
+                </p:inputText>  
             
-            
-            <p:commandButton value="CADASTRAR"
-                             actionListener="#{jogadorBean.cadastrarNovoJogador}"
-                             update="form-cadastro-jogador"
-                            />
+                <p:commandButton value="CADASTRAR"
+                                icon="ui-icon-plus"
+                                actionListener="#{jogadorBean.cadastrarNovoJogador}"
+                                update="form-cadastro-jogador"
+                                />
 
-       </h:form>
-             </p:fieldset>
+            </h:form>
+                
+        </p:fieldset>
     </h:body>
 </html>

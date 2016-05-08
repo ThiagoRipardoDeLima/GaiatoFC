@@ -4,6 +4,8 @@ package br.com.gaiatosfc.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -12,7 +14,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="fale"
-    ,schema="public"
+    ,catalog="gaiatosfc"
 )
 public class Fale  implements java.io.Serializable {
 
@@ -38,9 +40,8 @@ public class Fale  implements java.io.Serializable {
        this.conteudo = conteudo;
     }
    
-     @Id 
-
-    
+    @Id 
+    @GeneratedValue(strategy=IDENTITY)
     @Column(name="cod_f", unique=true, nullable=false)
     public int getCodF() {
         return this.codF;
