@@ -6,23 +6,16 @@
 package br.com.gaiatosfc.DAO;
 
 import br.com.gaiatosfc.model.Jogadores;
-import br.com.gaiatosfc.util.HibernateUtil;
-import java.io.Serializable;
 import java.util.List;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 /**
  *
- * @author FERNANDO
+ * @author SUPORTE03
  */
-public class JogadoresDAO{
-    
-    
-    public void salvar(Jogadores jogador) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction t = session.beginTransaction();
-        session.save(jogador);
-        t.commit();        
-    }
+public interface JogadoresDAO {
+   void salvar(Jogadores jogador) throws DAOException;
+   void atualizar(Jogadores jogador) throws DAOException;
+   void deletar(Jogadores jogador) throws DAOException;
+   List<Jogadores> findAllJogadorID(Integer id) throws DAOException;
+   List<Jogadores> findAllJogadores() throws DAOException;
 }

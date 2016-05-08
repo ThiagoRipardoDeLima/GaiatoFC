@@ -7,6 +7,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -39,7 +41,8 @@ public class Campeonatos  implements java.io.Serializable {
        this.jogoses = jogoses;
     }
    
-    @Id 
+    @Id
+    @GeneratedValue(strategy=IDENTITY)
     @Column(name="cod_c", unique=true, nullable=false)
     public int getCodC() {
         return this.codC;

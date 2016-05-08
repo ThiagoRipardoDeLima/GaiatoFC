@@ -4,6 +4,8 @@ package br.com.gaiatosfc.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -39,9 +41,8 @@ public class Noticias  implements java.io.Serializable {
        this.codComentario = codComentario;
     }
    
-     @Id 
-
-    
+    @Id 
+    @GeneratedValue(strategy=IDENTITY)
     @Column(name="cod_n", unique=true, nullable=false)
     public int getCodN() {
         return this.codN;

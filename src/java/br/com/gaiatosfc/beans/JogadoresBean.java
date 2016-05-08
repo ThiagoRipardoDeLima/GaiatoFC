@@ -5,7 +5,7 @@
  */
 package br.com.gaiatosfc.beans;
 
-import br.com.gaiatosfc.DAO.JogadoresDAO;
+import br.com.gaiatosfc.DAO.JogadoresDAOImp;
 import br.com.gaiatosfc.model.Jogadores;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -33,7 +33,7 @@ public class JogadoresBean {
                 throw new Exception("O objeto não foi criado");
             }
             
-            JogadoresDAO jogadorDao = new JogadoresDAO();
+            JogadoresDAOImp jogadorDao = new JogadoresDAOImp();
             jogadorDao.salvar(jogador);
             
             String successMsg="Jogador Cadastrado";
