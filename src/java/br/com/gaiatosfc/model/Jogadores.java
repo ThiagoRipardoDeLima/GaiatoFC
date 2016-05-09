@@ -2,6 +2,9 @@
 // Generated 22/04/2016 14:13:13 by Hibernate Tools 4.3.1
 
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -33,7 +36,7 @@ public class Jogadores  implements java.io.Serializable {
      private String jogosDisputados;
      private String gols;
      private String numeroCamisa;
-     private String dataNasc;
+     private Date dataNasc;
      private Set golses = new HashSet(0);
 
     public Jogadores() {
@@ -44,7 +47,7 @@ public class Jogadores  implements java.io.Serializable {
         this.codJd = codJd;
         this.nomeJd = nomeJd;
     }
-    public Jogadores(int codJd, String nomeJd, String foto, String posicao, String jogosDisputados, String gols, String numeroCamisa, String dataNasc, Set golses) {
+    public Jogadores(int codJd, String nomeJd, String foto, String posicao, String jogosDisputados, String gols, String numeroCamisa, Date dataNasc, Set golses) {
        this.codJd = codJd;
        this.nomeJd = nomeJd;
        this.foto = foto;
@@ -107,7 +110,7 @@ public class Jogadores  implements java.io.Serializable {
         this.jogosDisputados = jogosDisputados;
     }
     
-     @Column(name="numero_camisa")
+    @Column(name="numero_camisa")
     public String getNumeroCamisa(){
         return numeroCamisa;
     }
@@ -126,13 +129,19 @@ public class Jogadores  implements java.io.Serializable {
         this.gols = gols;
     }
 
-    
+    @Temporal(TemporalType.DATE)
     @Column(name="data_nasc", length=13)
-    public String getDataNasc() {
+    public Date getDataNasc() {
+        System.out.println("data Get: " + this.dataNasc);
         return this.dataNasc;
     }
     
-    public void setDataNasc(String dataNasc) {
+    public void setDataNasc(Date dataNasc) {
+        /*
+        DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");  
+        String sData = fmt.format(dataNasc);//formata a data em um String seguindo a máscara.
+        
+        System.out.println("Date Set: " + sData);*/
         this.dataNasc = dataNasc;
     }
     

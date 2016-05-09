@@ -109,7 +109,7 @@ public class JogadoresDAOImp implements JogadoresDAO{
             session = HibernateUtil.getSessionFactory().openSession();
             Transaction t = session.beginTransaction();
             List allnumeroCamisa = session
-                    .createQuery("SELECT J.numeroCamisa FROM Jogadores J")
+                    .createQuery("SELECT J.numeroCamisa FROM Jogadores J ORDER BY J.numeroCamisa asc")
                     .list();
             t.commit();
             return allnumeroCamisa;

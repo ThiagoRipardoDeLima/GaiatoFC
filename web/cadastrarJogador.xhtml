@@ -55,12 +55,14 @@
                 
                 
                 <p:outputLabel id="lblNumeroCamisa">Numero da Camisa</p:outputLabel> 
-                <p:selectOneMenu id="selCurso" value="#{jogadorBean.jogador.numeroCamisa}">
+                <p:selectOneMenu id="selNumeroCamisa" value="#{jogadorBean.jogador.numeroCamisa}">
                     <f:selectItems  value="#{jogadorBean.numeroCamisa()}" />
                 </p:selectOneMenu>
                 
                 <p:outputLabel id="lblnascimento" value="#{jogadorBean.jogador.dataNasc}" style="display: block; padding-top: 30px"/>
-                <p:calendar id="txtdata" pattern="yyyy-MM-dd" mask="true" style="display: block; padding-top: 20px"/>
+                <p:calendar id="txtdata" pattern="dd/MM/yyyy" mask="true" style="display: block; padding-top: 20px">
+                    <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+                </p:calendar>
                 
                 
                 <p:commandButton value="CADASTRAR"

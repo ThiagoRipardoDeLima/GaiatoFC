@@ -9,6 +9,8 @@ import br.com.gaiatosfc.DAO.JogadoresDAOImp;
 import br.com.gaiatosfc.commons.DAOException;
 import br.com.gaiatosfc.model.Jogadores;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -23,13 +25,17 @@ public class JogadoresBean {
     private List<String> numeroDaCamisa;
     
     @PostConstruct
-    public void init() throws DAOException{
-        
+    public void init(){
+        try {
+            this.numeroDaCamisa = new JogadoresDAOImp().findAllNumeroCamisa();
+        } catch (DAOException ex) {
+            Logger.getLogger(JogadoresBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public JogadoresBean() throws DAOException{
         jogador = new Jogadores();
-        this.numeroDaCamisa = new JogadoresDAOImp().findAllNumeroCamisa();
+        
     }
     
     
@@ -67,23 +73,18 @@ public class JogadoresBean {
         
     }
     
-    public Set<String> numeroCamisa() throws DAOException{
-      
-        
+    public List<String> numeroCamisa() throws DAOException{
         List<String> listaSelectItems = new ArrayList<>();
-
         for(int i = 1; i < 21; i++){
-            for (String c : numeroDaCamisa) {
-                int j = Integer.parseInt(c);
-                if(j != i){
-                    String item = String.valueOf(i);
-                    listaSelectItems.add(item);
-                }
+            listaSelectItems.add(String.valueOf(i));
+        }
+        Iterator<String> it = listaSelectItems.iterator();
+        while(it.hasNext()){
+            if(numeroDaCamisa.contains(it.next())){
+                it.remove();
             }
         }
-        Set<String> lista = new HashSet<>();
-        lista.addAll(listaSelectItems);
-        return lista;
+        return listaSelectItems;
     }
     
     public Jogadores getJogador(){
