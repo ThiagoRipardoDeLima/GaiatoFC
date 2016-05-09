@@ -77,7 +77,7 @@ public class Gols  implements java.io.Serializable {
         this.jogos = jogos;
     }
 
-    @Temporal(TemporalType.DATE)
+    
     @Column(name="data", length=13)
     public Date getData() {
         return this.data;

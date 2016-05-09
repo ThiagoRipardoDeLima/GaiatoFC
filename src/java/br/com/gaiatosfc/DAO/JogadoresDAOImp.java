@@ -9,6 +9,7 @@ import br.com.gaiatosfc.commons.DAOException;
 import br.com.gaiatosfc.model.Jogadores;
 import br.com.gaiatosfc.util.HibernateUtil;
 import java.util.List;
+import javax.swing.JOptionPane;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -27,6 +28,7 @@ public class JogadoresDAOImp implements JogadoresDAO{
             Transaction t = session.beginTransaction();
             session.save(jogador);
             t.commit();
+            
         }catch(Exception e){
             session.getTransaction().rollback();
             throw new DAOException(e);
@@ -35,6 +37,9 @@ public class JogadoresDAOImp implements JogadoresDAO{
                 session.close();
             }
         }
+            
+        
+        
     }
 
     @Override
@@ -85,10 +90,29 @@ public class JogadoresDAOImp implements JogadoresDAO{
             session = HibernateUtil.getSessionFactory().openSession();
             Transaction t = session.beginTransaction();
             List allJogadores = session
-                    .createQuery("from Jogadores J order by J.nome asc")
+                    .createQuery("FROM Jogadores J order by J.nomeJd asc")
                     .list();
             t.commit();
             return allJogadores;
+        }catch(Exception e){
+            throw new DAOException("Nenhum Jogador Cadastrado: " + e);
+        }finally{
+            if(session!=null){
+                session.close();
+            }
+        }
+    }
+    
+    public List<String> findAllNumeroCamisa() throws DAOException {
+        Session session = null;
+        try{
+            session = HibernateUtil.getSessionFactory().openSession();
+            Transaction t = session.beginTransaction();
+            List allnumeroCamisa = session
+                    .createQuery("SELECT J.numeroCamisa FROM Jogadores J")
+                    .list();
+            t.commit();
+            return allnumeroCamisa;
         }catch(Exception e){
             throw new DAOException("Nenhum Jogador Cadastrado: " + e);
         }finally{

@@ -2,7 +2,6 @@
 // Generated 22/04/2016 14:13:13 by Hibernate Tools 4.3.1
 
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -31,10 +30,10 @@ public class Jogadores  implements java.io.Serializable {
      private String nomeJd;
      private String foto;
      private String posicao;
-     private Integer jogosDisputados;
-     private Integer gols;
-     private Integer numeroCamisa;
-     private Date dataNasc;
+     private String jogosDisputados;
+     private String gols;
+     private String numeroCamisa;
+     private String dataNasc;
      private Set golses = new HashSet(0);
 
     public Jogadores() {
@@ -45,7 +44,7 @@ public class Jogadores  implements java.io.Serializable {
         this.codJd = codJd;
         this.nomeJd = nomeJd;
     }
-    public Jogadores(int codJd, String nomeJd, String foto, String posicao, Integer jogosDisputados, Integer gols, Date dataNasc, Set golses) {
+    public Jogadores(int codJd, String nomeJd, String foto, String posicao, String jogosDisputados, String gols, String numeroCamisa, String dataNasc, Set golses) {
        this.codJd = codJd;
        this.nomeJd = nomeJd;
        this.foto = foto;
@@ -53,6 +52,7 @@ public class Jogadores  implements java.io.Serializable {
        this.jogosDisputados = jogosDisputados;
        this.gols = gols;
        this.dataNasc = dataNasc;
+       this.numeroCamisa = numeroCamisa;
        this.golses = golses;
     }
    
@@ -99,31 +99,40 @@ public class Jogadores  implements java.io.Serializable {
 
     
     @Column(name="jogos_disputados")
-    public Integer getJogosDisputados() {
+    public String getJogosDisputados() {
         return this.jogosDisputados;
     }
     
-    public void setJogosDisputados(Integer jogosDisputados) {
+    public void setJogosDisputados(String jogosDisputados) {
         this.jogosDisputados = jogosDisputados;
+    }
+    
+     @Column(name="numero_camisa")
+    public String getNumeroCamisa(){
+        return numeroCamisa;
+    }
+    
+    public void setNumeroCamisa(String numeroCamisa){
+        this.numeroCamisa = numeroCamisa;
     }
 
     
     @Column(name="gols")
-    public Integer getGols() {
+    public String getGols() {
         return this.gols;
     }
     
-    public void setGols(Integer gols) {
+    public void setGols(String gols) {
         this.gols = gols;
     }
 
-    @Temporal(TemporalType.DATE)
+    
     @Column(name="data_nasc", length=13)
-    public Date getDataNasc() {
+    public String getDataNasc() {
         return this.dataNasc;
     }
     
-    public void setDataNasc(Date dataNasc) {
+    public void setDataNasc(String dataNasc) {
         this.dataNasc = dataNasc;
     }
     
@@ -135,15 +144,6 @@ public class Jogadores  implements java.io.Serializable {
     
     public void setGolses(Set golses) {
         this.golses = golses;
-    }
-
-    @Column(name="numero_camisa")
-    public Integer getNumeroCamisa(){
-        return numeroCamisa;
-    }
-    
-    public void setNumeroCamisa(Integer numeroCamisa){
-        this.numeroCamisa = numeroCamisa;
     }
 }
 

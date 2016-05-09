@@ -55,14 +55,14 @@
                 
                 
                 <p:outputLabel id="lblNumeroCamisa">Numero da Camisa</p:outputLabel> 
-                <p:inputText id="txtNumeroCamisa" 
-                             required="true"
-                             validatorMessage="Numero da Camisa entre 1 e 20">
-                    <f:validateRegex pattern="^\d+$" />
-                    <f:validateLength minimum="1" maximum="20"/>
-                    
-                </p:inputText>  
-            
+                <p:selectOneMenu id="selCurso" value="#{jogadorBean.jogador.numeroCamisa}">
+                    <f:selectItems  value="#{jogadorBean.numeroCamisa()}" />
+                </p:selectOneMenu>
+                
+                <p:outputLabel id="lblnascimento" value="#{jogadorBean.jogador.dataNasc}" style="display: block; padding-top: 30px"/>
+                <p:calendar id="txtdata" pattern="yyyy-MM-dd" mask="true" style="display: block; padding-top: 20px"/>
+                
+                
                 <p:commandButton value="CADASTRAR"
                                 icon="ui-icon-plus"
                                 actionListener="#{jogadorBean.cadastrarNovoJogador}"

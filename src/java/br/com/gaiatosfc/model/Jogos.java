@@ -93,7 +93,7 @@ public class Jogos  implements java.io.Serializable {
         this.campeonatos = campeonatos;
     }
 
-    @Temporal(TemporalType.DATE)
+    
     @Column(name="data", length=13)
     public Date getData() {
         return this.data;
