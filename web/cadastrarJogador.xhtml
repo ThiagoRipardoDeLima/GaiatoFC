@@ -25,52 +25,48 @@
             
          -->
         <p:fieldset legend="Cadastrar Novo Jogador" toggleable="False">
-         
-            <h:form id="form-cadastro-jogador">
+            <p:messages id="msg-cadastro-jogador"/>
+            <h:form id="frmJogador">
                 
-            
-                <p:messages id="msg-cadastro-jogador"/>
-            <!--
-            <p:outputLabel id="lblnascimento" value="Data de Nasc." style="display: block; padding-top: 30px"/>
-            <p:outputLabel id="lblminMax" value="Camisa " style="display: block; padding-top: 30px" />             
-                       
-           
-            <p:inputText id="txtPosicao" style="margin-top: 20px"/>
-            <p:calendar id="txtdata" pattern="dd-MM-yyyy" mask="true" style="display: block; padding-top: 20px"/>
-            <p:inputText id="numeroCamisa" required="true" style="margin-top: 20px">
-                <f:validateRegex pattern="^\d+$" />
-                <f:validateLength minimum="1" maximum="2"/>
-            </p:inputText>  
-            -->
-            
-                <p:outputLabel id="lblJogador">Nome Jogador</p:outputLabel>
-                <p:inputText id="txtNomeJogador" 
-                             value="#{jogadorBean.jogador.nomeJd}"
-                             required="True"
-                             requiredMessage="Por Favor, informe o Nome do Jogador"
-                             maxlength="40"
-                             validatorMessage="O Nome deve conter no maximo 40 caracteres">
-                            <f:validateLength maximum="40"></f:validateLength>
-                </p:inputText>
-                
-                
-                <p:outputLabel id="lblNumeroCamisa">Numero da Camisa</p:outputLabel> 
-                <p:selectOneMenu id="selNumeroCamisa" value="#{jogadorBean.jogador.numeroCamisa}">
-                    <f:selectItems  value="#{jogadorBean.numeroCamisa()}" />
-                </p:selectOneMenu>
-                
-                <p:outputLabel id="lblnascimento" value="#{jogadorBean.jogador.dataNasc}" style="display: block; padding-top: 30px"/>
-                <p:calendar id="txtdata" pattern="dd/MM/yyyy" mask="true" style="display: block; padding-top: 20px">
-                    <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
-                </p:calendar>
-                
-                
-                <p:commandButton value="CADASTRAR"
-                                icon="ui-icon-plus"
-                                actionListener="#{jogadorBean.cadastrarNovoJogador}"
-                                update="form-cadastro-jogador"
-                                />
+                <p:panelGrid columns="2" style="horizontal-align:center">
+                    
+                    
+                    <p:outputLabel id="lblJogador">Nome Jogador</p:outputLabel>
+                    <p:inputText id="txtNomeJogador" 
+                                 value="#{jogadorBean.jogador.nomeJd}"
+                                 required="True"
+                                 requiredMessage="Por Favor, informe o Nome do Jogador"
+                                 maxlength="40"
+                                 validatorMessage="O Nome deve conter no maximo 40 caracteres">
+                                <f:validateLength maximum="40"></f:validateLength>
+                    </p:inputText>
 
+
+                    <p:outputLabel id="lblNumeroCamisa">Numero da Camisa</p:outputLabel> 
+                    <p:selectOneMenu id="selNumeroCamisa" value="#{jogadorBean.jogador.numeroCamisa}">
+                        <f:selectItems  value="#{jogadorBean.numeroCamisa()}" />
+                        
+                    </p:selectOneMenu>
+
+                    <p:outputLabel id="lblnascimento" value="Data de Nascimento" style="display: block; padding-top: 30px"/>
+                    <p:calendar id="dataNascimento"
+                                value="#{jogadorBean.jogador.dataNasc}"
+                                styleClass="data" 
+                                pattern="dd/MM/yyyy" 
+                                mask="true" 
+                                style="display: block; padding-top: 20px">
+                        <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-4"></f:convertDateTime>
+                    </p:calendar>
+
+                    <p:outputLabel id="lblPosicaoJogador">Posicao</p:outputLabel>
+                    <p:inputText id="txtPosicao" style="margin-top: 20px"/>
+                
+                </p:panelGrid>
+                <p:commandButton value="CADASTRAR"
+                                    icon="ui-icon-plus"
+                                    actionListener="#{jogadorBean.cadastrarNovoJogador}"
+                                    update="frmJogador, selNumeroCamisa"
+                                    />
             </h:form>
                 
         </p:fieldset>

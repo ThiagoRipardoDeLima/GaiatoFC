@@ -142,6 +142,8 @@ public class Jogadores  implements java.io.Serializable {
         String sData = fmt.format(dataNasc);//formata a data em um String seguindo a máscara.
         
         System.out.println("Date Set: " + sData);*/
+        
+        System.out.println("data Set: " + this.dataNasc);
         this.dataNasc = dataNasc;
     }
     
