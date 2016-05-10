@@ -23,11 +23,13 @@ public class JogadoresBean {
     
     private Jogadores jogador;
     private List<String> numeroDaCamisa;
-    
+    private List<Jogadores> allJogadores;
+
     @PostConstruct
     public void init(){
         try {
             this.numeroDaCamisa = new JogadoresDAOImp().findAllNumeroCamisa();
+            this.allJogadores = new JogadoresDAOImp().findAllJogadores();
         } catch (DAOException ex) {
             Logger.getLogger(JogadoresBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -95,4 +97,11 @@ public class JogadoresBean {
         this.jogador = jogador;
     }
     
+    public List<Jogadores> getAllJogadores() {
+        return allJogadores;
+    }
+
+    public void setAllJogadores(List<Jogadores> allJogadores) {
+        this.allJogadores = allJogadores;
+    }
 }
