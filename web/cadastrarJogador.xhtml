@@ -66,31 +66,56 @@
                 <p:commandButton value="Cadastrar"
                                     icon="ui-icon-plus"
                                     actionListener="#{jogadorBean.cadastrarNovoJogador()}"
-                                    update="grid">
+                                    update="grid, tabelaJogador">
                     
-                
+                    
                 </p:commandButton>
                 
-            </h:form>
+                <p:separator />
+                <p:separator />
                 
-        </p:fieldset>
-         
-         <p:dataTable id="tabela" var="jogador" value="#{jogadorBean.allJogadores}"
+                 <p:dataTable id="tabelaJogador" var="jogador" value="#{jogadorBean.allJogadores}"
                       paginator="true" rows="10" emptyMessage="Não Jogadores Cadastrados"
                       paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                       rowsPerPageTemplate="10,20">
          
-             <f:facet name="header">Jogadores do GaiatosFC</f:facet>
-             <p:column headerText="ID" style="width: 25%;"
+                <f:facet name="header">Jogadores do GaiatosFC</f:facet>
+                 <p:column headerText="ID" style="width: 25%;"
                        sortBy="#{jogador.codJd}" rendered="false">
                  <h:outputText value="#{jogador.codJd}"/>
-             </p:column>
+                </p:column>
              
-             <p:column headerText="Nome" style="width: 25%;" sortBy="#{jogador.nomeJd}">	
-                 <h:outputText value="#{jogador.nomeJd}" />
-            </p:column>
-         
-         </p:dataTable>
-         
+                    <p:column headerText="Nome" style="width: 25%;" sortBy="#{jogador.nomeJd}">	
+                        <h:outputText value="#{jogador.nomeJd}" style="text-align: center" />
+                    </p:column>
+
+                     <p:column headerText="Posicao" style="width: 25%;" sortBy="#{jogador.posicao}">	
+                        <h:outputText value="#{jogador.posicao}" />
+                    </p:column>
+
+                    <p:column headerText="Numero Da Camisa" style="width: 25%;" sortBy="#{jogador.numeroCamisa}">	
+                         <h:outputText value="#{jogador.numeroCamisa}" />
+                    </p:column>
+
+                     <p:column headerText="Idade" style="width: 25%;" sortBy="#{jogador.dataNasc}">	
+                         <h:outputText value="#{jogador.dataNasc}" />
+                    </p:column> 
+
+                     <p:column headerText="Operação" style="width: 25%;">
+
+                        <p:commandButton id="remover" value="Excluir" actionListener="#{jogadorBean.removerJogador(jogador)}" 
+                                    update="tabelaJogador">
+                            <f:setPropertyActionListener target="#{jogador}" value="#{jogadorBean.jogador}"/>
+                        </p:commandButton>
+                        <p:commandButton id="atualizar" value="Atualizar" actionListener="#{jogadorBean.atualizarJogador(jogador)}" 
+                                    update="tabelaJogador">
+                            <f:setPropertyActionListener target="#{jogador}" value="#{jogadorBean.jogador}"/>
+                        </p:commandButton>
+                    </p:column>
+                 </p:dataTable>
+            </h:form>
+                
+        </p:fieldset>
+
     </h:body>
 </html>

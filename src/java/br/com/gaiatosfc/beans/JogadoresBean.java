@@ -40,7 +40,6 @@ public class JogadoresBean {
         
     }
     
-    
     public List<String> getNumeroDaCamisa() {
         return numeroDaCamisa;
     }
@@ -49,32 +48,6 @@ public class JogadoresBean {
         this.numeroDaCamisa = numeroDaCamisa;
     }
 
-   
-    
-    public void cadastrarNovoJogador() {
-        FacesMessage fm = new FacesMessage();
-        try {
-            if (jogador==null) {
-                throw new Exception("O objeto não foi criado");
-            }
-            JogadoresDAOImp jogadorDao = new JogadoresDAOImp();
-            jogadorDao.salvar(jogador);
-            
-            String successMsg="Jogador Cadastrado";
-            fm = new FacesMessage(
-                FacesMessage.SEVERITY_INFO,successMsg,null);
-            jogador = new Jogadores();
-            
-        } catch (Exception e) {
-            
-            fm = new FacesMessage(
-                FacesMessage.SEVERITY_WARN,e.getMessage(),null);            
-        }
-        
-        FacesContext.getCurrentInstance().addMessage(null, fm);
-        
-    }
-    
     public List<String> numeroCamisa() throws DAOException{
         List<String> listaSelectItems = new ArrayList<>();
         for(int i = 1; i < 21; i++){
@@ -97,11 +70,44 @@ public class JogadoresBean {
         this.jogador = jogador;
     }
     
+    public void setAllJogadores(List<Jogadores> allJogadores) {
+        this.allJogadores = allJogadores;
+    }
+    
     public List<Jogadores> getAllJogadores() {
         return allJogadores;
     }
-
-    public void setAllJogadores(List<Jogadores> allJogadores) {
-        this.allJogadores = allJogadores;
+    
+    public void cadastrarNovoJogador() {
+        FacesMessage fm = new FacesMessage();
+        try {
+            if (jogador==null) {
+                throw new Exception("O objeto não foi criado");
+            }
+            JogadoresDAOImp jogadorDao = new JogadoresDAOImp();
+            jogadorDao.salvar(jogador);
+            String successMsg="Jogador Cadastrado";
+            fm = new FacesMessage(
+                FacesMessage.SEVERITY_INFO,successMsg,null);
+            jogador = new Jogadores();
+            init();
+        } catch (Exception e) {
+            
+            fm = new FacesMessage(
+                FacesMessage.SEVERITY_WARN,e.getMessage(),null);            
+        }
+        
+        FacesContext.getCurrentInstance().addMessage(null, fm);
+        
+    }
+    
+    public void removerJogador(Jogadores jogador) throws DAOException{
+        new JogadoresDAOImp().deletar(jogador);
+        init();
+    }
+    
+    public void atualizarJogador(Jogadores jogador) throws DAOException{
+        new JogadoresDAOImp().atualizar(jogador);
+        init();
     }
 }
