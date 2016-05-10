@@ -48,7 +48,8 @@ public class JogadoresDAOImp implements JogadoresDAO{
         try{
             session = HibernateUtil.getSessionFactory().openSession();
             Transaction t = session.beginTransaction();
-            session.update(jogador);
+            
+            session.merge(jogador);
             t.commit();
         }catch(Exception e){
             session.getTransaction().rollback();

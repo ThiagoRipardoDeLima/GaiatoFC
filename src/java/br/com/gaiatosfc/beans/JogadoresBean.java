@@ -8,6 +8,7 @@ package br.com.gaiatosfc.beans;
 import br.com.gaiatosfc.DAO.JogadoresDAOImp;
 import br.com.gaiatosfc.commons.DAOException;
 import br.com.gaiatosfc.model.Jogadores;
+import java.io.Serializable;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,16 +18,22 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import org.primefaces.event.RowEditEvent;
+import javax.faces.event.ActionEvent;
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 
 @ManagedBean(name = "jogadorBean")
-@ViewScoped
+@SessionScoped
 public class JogadoresBean {
+    
     
     private Jogadores jogador;
     private List<String> numeroDaCamisa;
     private List<Jogadores> allJogadores;
+    private DataModel listaJogadores;
 
+    
+    
     @PostConstruct
     public void init(){
         try {
@@ -38,10 +45,19 @@ public class JogadoresBean {
     }
     
     public JogadoresBean() throws DAOException{
-        jogador = new Jogadores();
-        
+        jogador = new Jogadores();  
     }
     
+    public DataModel getListaJogadores() throws DAOException {
+        List<Jogadores> lista = new JogadoresDAOImp().findAllJogadores();
+        listaJogadores = new ListDataModel(lista);
+        return listaJogadores;
+    }
+    
+    public void prepararAlterarJogador(ActionEvent actionEvent){
+        jogador = (Jogadores)(listaJogadores.getRowData());
+    }
+
     public List<String> getNumeroDaCamisa() {
         return numeroDaCamisa;
     }
@@ -103,26 +119,28 @@ public class JogadoresBean {
         
     }
     
-    public void removerJogador(Jogadores jogador) throws DAOException{
-        new JogadoresDAOImp().deletar(jogador);
-        init();
+    public String removerJogador(ActionEvent actionEvent) throws DAOException{
+        Jogadores jogadorTemp = (Jogadores)(listaJogadores.getRowData());
+        JogadoresDAOImp jogadorDao = new JogadoresDAOImp();
+        jogadorDao.deletar(jogadorTemp);
+        return "cadastrarJogador";
     }
     
-    public void atualizarJogador(Jogadores jogador) throws DAOException{
-        new JogadoresDAOImp().atualizar(jogador);
+    public void excluir(ActionEvent actionEvent) throws DAOException{
+                FacesMessage fm = new FacesMessage();
+		new JogadoresDAOImp().deletar(jogador);
+                String successMsg="Jogador Deletado";
+                fm = new FacesMessage(
+                FacesMessage.SEVERITY_INFO,successMsg,null);
+		
+		jogador = new Jogadores();
+                init();
+	}
+    
+    public void atualizarJogador(ActionEvent event) throws DAOException{
+        JogadoresDAOImp jogadorDao = new JogadoresDAOImp();
+        jogadorDao.atualizar(jogador);
         init();
     }
-    
-    public void onEdit(RowEditEvent event) throws DAOException {  
-        atualizarJogador((Jogadores) event.getObject());
-        FacesMessage msg = new FacesMessage("Jogador Atualizao",((JogadoresBean) event.getObject()).jogador.getNomeJd());  
-        FacesContext.getCurrentInstance().addMessage(null, msg);  
-    }  
-       
-    public void onCancel(RowEditEvent event) {  
-        FacesMessage msg = new FacesMessage("Atualizacao Cancelada");   
-        FacesContext.getCurrentInstance().addMessage(null, msg); 
-        //orderList.remove((OrderBean) event.getObject());
-    }  
     
 }
