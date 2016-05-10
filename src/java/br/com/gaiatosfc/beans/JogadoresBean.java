@@ -14,11 +14,13 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import org.primefaces.event.RowEditEvent;
 
 @ManagedBean(name = "jogadorBean")
-@RequestScoped
+@ViewScoped
 public class JogadoresBean {
     
     private Jogadores jogador;
@@ -110,4 +112,17 @@ public class JogadoresBean {
         new JogadoresDAOImp().atualizar(jogador);
         init();
     }
+    
+    public void onEdit(RowEditEvent event) throws DAOException {  
+        atualizarJogador((Jogadores) event.getObject());
+        FacesMessage msg = new FacesMessage("Jogador Atualizao",((JogadoresBean) event.getObject()).jogador.getNomeJd());  
+        FacesContext.getCurrentInstance().addMessage(null, msg);  
+    }  
+       
+    public void onCancel(RowEditEvent event) {  
+        FacesMessage msg = new FacesMessage("Atualizacao Cancelada");   
+        FacesContext.getCurrentInstance().addMessage(null, msg); 
+        //orderList.remove((OrderBean) event.getObject());
+    }  
+    
 }

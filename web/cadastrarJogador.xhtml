@@ -24,10 +24,12 @@
             </p:inputText>   
             
          -->
-        <p:fieldset legend="Cadastrar Novo Jogador" toggleable="False">
+        
             
             <h:form id="frmJogador">
-                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+                <p:growl id="menssages" showDetail="true"/>
+                <p:fieldset legend="Cadastrar Novo Jogador" toggleable="False">
+                
                 
                 <p:panelGrid id="grid" columns="2" style="horizontal-align:center">
                     
@@ -66,27 +68,40 @@
                 <p:commandButton value="Cadastrar"
                                     icon="ui-icon-plus"
                                     actionListener="#{jogadorBean.cadastrarNovoJogador()}"
-                                    update="grid, tabelaJogador">
+                                    update="grid, tabelaJogador, menssages">
                     
                     
                 </p:commandButton>
                 
                 <p:separator />
+                 
                 <p:separator />
                 
-                 <p:dataTable id="tabelaJogador" var="jogador" value="#{jogadorBean.allJogadores}"
+                <p:dataTable id="tabelaJogador" editable="true" var="jogador" value="#{jogadorBean.allJogadores}"
                       paginator="true" rows="10" emptyMessage="Não Jogadores Cadastrados"
                       paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                       rowsPerPageTemplate="10,20">
-         
-                <f:facet name="header">Jogadores do GaiatosFC</f:facet>
-                 <p:column headerText="ID" style="width: 25%;"
+                    <p:growl id="menssages1" showDetail="true"/>
+                    <f:facet name="header">Jogadores do GaiatosFC</f:facet>
+                    <p:ajax event="rowEdit" listener="#{jogadorBean.onEdit()}" update="menssages1" />  
+                    <p:ajax event="rowEditCancel" listener="#{jogadorBean.onCancel}" update="menssages1" />
+                    <p:column headerText="ID" style="width: 25%;"
                        sortBy="#{jogador.codJd}" rendered="false">
-                 <h:outputText value="#{jogador.codJd}"/>
-                </p:column>
+                    <h:outputText value="#{jogador.codJd}"/>
+                    </p:column>
              
-                    <p:column headerText="Nome" style="width: 25%;" sortBy="#{jogador.nomeJd}">	
+                    <p:column style="width: 25%;" sortBy="#{jogador.nomeJd}">	
+                        <f:facet name="Nome">
                         <h:outputText value="#{jogador.nomeJd}" style="text-align: center" />
+                        </f:facet>
+                        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{jogador.nomeJd}" />  
+                            </f:facet>  
+                            <f:facet name="input">  
+                                <p:inputText value="#{jogador.nomeJd}" style="width:100%"/>  
+                            </f:facet>  
+                        </p:cellEditor> 
                     </p:column>
 
                      <p:column headerText="Posicao" style="width: 25%;" sortBy="#{jogador.posicao}">	
@@ -104,18 +119,32 @@
                      <p:column headerText="Operação" style="width: 25%;">
 
                         <p:commandButton id="remover" value="Excluir" actionListener="#{jogadorBean.removerJogador(jogador)}" 
-                                    update="tabelaJogador">
+                                    update="tabelaJogador, menssages1">
                             <f:setPropertyActionListener target="#{jogador}" value="#{jogadorBean.jogador}"/>
                         </p:commandButton>
-                        <p:commandButton id="atualizar" value="Atualizar" actionListener="#{jogadorBean.atualizarJogador(jogador)}" 
-                                    update="tabelaJogador">
-                            <f:setPropertyActionListener target="#{jogador}" value="#{jogadorBean.jogador}"/>
-                        </p:commandButton>
+                         
+                         <p:rowEditor /> 
+                         <!--
+                        <p:commandButton id="atualizar" 
+                                         onclick="PF('dialog').show();"
+                                         value="Alterar"
+                                         >
+                            <f:setPropertyActionListener target="#{jogadorBean.jogador}" value="#{jogador}"/>
+                        </p:commandButton>-->
                     </p:column>
                  </p:dataTable>
+                <!--
+                <p:dialog id="dlg" header="Editar Jogador" widgetVar="dialog" resizable="false" modal="true" >
+                    <p:panelGrid id="panelDados" columns="2">  
+                       <h:outputLabel value="Nome:"/>
+                       <p:inputText id="nomeJogador" value="#{jogadorBean.jogador.nomeJd}" title="Nome do Jogador" size="60" required="true" requiredMessage="Digite o Nome!" /> 
+                    </p:panelGrid>               
+                    <p:commandButton value="Atualizar" action="#{jogadorBean.atualizarJogador(jogador)}" ajax="false"/>
+                </p:dialog>-->
+                </p:fieldset>
             </h:form>
-                
-        </p:fieldset>
+            
+        
 
     </h:body>
 </html>
