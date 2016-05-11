@@ -28,7 +28,8 @@ public class JogadoresDAOImp implements JogadoresDAO{
             Transaction t = session.beginTransaction();
             session.save(jogador);
             t.commit();
-            
+            session.flush();
+            session.clear();
         }catch(Exception e){
             session.getTransaction().rollback();
             throw new DAOException(e);
@@ -67,8 +68,12 @@ public class JogadoresDAOImp implements JogadoresDAO{
         try{
             session = HibernateUtil.getSessionFactory().openSession();
             Transaction t = session.beginTransaction();
+           session.flush();
             session.delete(jogador);
+            
             t.commit();
+            
+            session.clear();
         }catch(Exception e){
             session.getTransaction().rollback();
             throw new DAOException(e);

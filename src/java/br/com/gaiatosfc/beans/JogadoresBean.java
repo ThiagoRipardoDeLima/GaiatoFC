@@ -23,7 +23,7 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
 @ManagedBean(name = "jogadorBean")
-@SessionScoped
+@ViewScoped
 public class JogadoresBean {
     
     
@@ -132,9 +132,8 @@ public class JogadoresBean {
                 String successMsg="Jogador Deletado";
                 fm = new FacesMessage(
                 FacesMessage.SEVERITY_INFO,successMsg,null);
-		
-		jogador = new Jogadores();
-                init();
+		init();
+                
 	}
     
     public void atualizarJogador(ActionEvent event) throws DAOException{

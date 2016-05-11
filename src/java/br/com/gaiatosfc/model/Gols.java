@@ -57,7 +57,7 @@ public class Gols  implements java.io.Serializable {
         this.codG = codG;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="cod_jogador")
     public Jogadores getJogadores() {
         return this.jogadores;
@@ -67,7 +67,7 @@ public class Gols  implements java.io.Serializable {
         this.jogadores = jogadores;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="cod_jogo")
     public Jogos getJogos() {
         return this.jogos;
@@ -79,6 +79,7 @@ public class Gols  implements java.io.Serializable {
 
     
     @Column(name="data", length=13)
+    @Temporal(TemporalType.DATE)
     public Date getData() {
         return this.data;
     }
